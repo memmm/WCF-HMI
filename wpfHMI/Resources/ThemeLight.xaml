@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:HmiStyle">
+
+    <!-- color palette (use the color's name as StaticResource)-->
+
+    <SolidColorBrush x:Key="lightColor" Color="#FF747E72" />
+    <SolidColorBrush x:Key="darkColor" Color="#FF535A52" />
+    <SolidColorBrush x:Key="backgroundColor" Color="White" />
+    <SolidColorBrush x:Key="textColor1" Color="#FF535252"/>
+    <SolidColorBrush x:Key="textColor2" Color="Gray"/>
+    <SolidColorBrush x:Key="sidePanelColor" Color="#FFC4D1C4"/>
+    <SolidColorBrush x:Key="greenLineColor" Color="YellowGreen"/>
+
+    <SolidColorBrush x:Key="disabledColor" Color="LightGray" />
+
+    <Color x:Key="clightColor">#FFA4AEA2</Color>
+    <Color x:Key="cdarkColor">#FF636A62</Color>
+
+    <Color x:Key="cdisabledColor">LightGray</Color>
+
+    <LinearGradientBrush x:Key="grad1" >
+        <GradientStop Color="WhiteSmoke" Offset="-0.2"/>
+        <GradientStop Color="#FFC9E697" Offset="1"/>
+    </LinearGradientBrush>
+    <RadialGradientBrush x:Key="grad2" GradientOrigin="0.6,0.45" Center="0.6,0.4" RadiusX="0.9" RadiusY="0.9">
+        <GradientStop Color="White" Offset="0"/>
+        <GradientStop Color="LightGray" Offset="1"/>
+    </RadialGradientBrush>
+
+    <LinearGradientBrush x:Key="headerGrad"  StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#FFEAECE8" Offset="0"/>
+        <GradientStop Color="#FFC4D1C4" Offset="1"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>

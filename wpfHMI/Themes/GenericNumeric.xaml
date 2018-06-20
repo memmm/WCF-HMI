@@ -1,0 +1,224 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:HmiStyle.Keyboard">
+
+    <Style x:Key="MyFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle Name="r1" StrokeThickness="1" Stroke="DarkGray" StrokeDashArray="2 2"/>
+                        <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="ShadowStyle">
+        <Setter Property="Control.Foreground" Value="LightGray" />
+    </Style>
+
+    <Style x:Key="InformButton" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="DarkGray"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+        <Setter Property="Background" >
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                    <GradientStop Color="White" Offset="0.2"/>
+                    <GradientStop Color="LightGray" Offset="0.85"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" 
+				        BorderThickness="2"
+				        Padding="5,3" 
+				        BorderBrush="DarkGray" 
+				        CornerRadius="3" 
+				        Background="{TemplateBinding Background}">
+                        <Grid >
+                            <ContentPresenter HorizontalAlignment="Left"  
+	                           VerticalAlignment="Center"  Name="contentShadow" 
+					Style="{StaticResource ShadowStyle}">
+
+                            </ContentPresenter>
+                            <ContentPresenter HorizontalAlignment="Left"  
+                            VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
+                            <Setter Property="Foreground" Value="#FF4788c8" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <GradientStop Color="LightGray" Offset="0.35"/>
+                                        <GradientStop Color="DarkGray" Offset="0.95"/>
+                                        <GradientStop Color="LightGray" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+
+                            <Setter TargetName="content" Property="RenderTransform" >
+                                <Setter.Value>
+                                    <TranslateTransform Y="1.0" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.7" />
+                            <Setter Property="Foreground" Value="Gray" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:NumericKeyboard}">
+        <Setter Property="Background" Value="#B4EF5D"/>
+        <Setter Property="Width" Value="520"/>
+        <Setter Property="Height" Value="290"/>
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:NumericKeyboard}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="4"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Focusable="False">
+
+                        <Border BorderBrush="LightGray" BorderThickness="2" CornerRadius="4">
+
+
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <Button Style="{StaticResource InformButton}"  Command="local:NumericKeyboard.Cmd7" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >7</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd8"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >8</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd9" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >9</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.CmdClear" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="201" Height="50">
+                                        Clear
+                                    </Button>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd4" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >4</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd5"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >5</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd6"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >6</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.CmdBackspace"   VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Width="110" Height="50">
+                                        Backspace
+                                    </Button>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd1"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >1</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd2"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >2</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.Cmd3"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >3</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" VerticalContentAlignment="Top" Command="local:NumericKeyboard.CmdEnter"  HorizontalContentAlignment="Left"  Width="111.5" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >Enter</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <Button Style="{StaticResource InformButton}"  Command="local:NumericKeyboard.Cmd0" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >0</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.CmdColon"  VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >,</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Style="{StaticResource InformButton}" Command="local:NumericKeyboard.CmdDot" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"  Width="50" Height="50">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                            <TextBlock    HorizontalAlignment="Left" VerticalAlignment="Top"   >.</TextBlock>
+                                        </StackPanel>
+                                    </Button>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

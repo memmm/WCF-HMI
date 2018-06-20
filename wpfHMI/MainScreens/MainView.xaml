@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="HmiStyle.MainScreens.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HmiStyle.MainScreens"
+             xmlns:main="clr-namespace:HmiStyle"
+             mc:Ignorable="d" Loaded="UserControl_Loaded" 
+             
+             >
+    <Grid>
+        
+        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,5,0,0" >
+            <TabItem Header="Mainview">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TreeView Grid.Column="0"  Name="ResultTreeView" BorderThickness="0">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type main:ObjectNode}" ItemsSource="{Binding Path=Children}">
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="{Binding Path=Name}"/>
+                                            <TextBlock Text=" : "/>
+                                            <TextBlock Text="{Binding Path=Value}"/>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
+
+                    <ListBox Grid.Column="1"  x:Name="DeviceListBox" ItemsSource="{Binding Devices, UpdateSourceTrigger=PropertyChanged}"
+                            DisplayMemberPath="DevName" HorizontalAlignment="Left" Height="138" VerticalAlignment="Top" Width="156"
+                             SelectedItem="{Binding SelectedDevice}" SelectionChanged="DeviceListBox_SelectionChanged"/>
+
+
+                    <GroupBox Grid.Column="2" x:Name="DeviceDetailsGB" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                        <Grid x:Name="DeviceDetailsGrid"></Grid>
+                    </GroupBox>
+
+
+
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Header="Waterflow switches">
+                <Grid/>
+            </TabItem>
+            <TabItem Header="U1">
+                <Grid />
+            </TabItem>
+            <TabItem Header="U2">
+                <Grid />
+            </TabItem>
+            <TabItem Header="U3">
+                <Grid />
+            </TabItem>
+            <TabItem Header="U4">
+                <Grid />
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</UserControl>

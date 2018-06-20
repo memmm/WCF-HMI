@@ -1,0 +1,18 @@
+﻿<Window x:Class="HMI.Domain.ConvertToCS.MainScreens.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HMI.Domain.ConvertToCS.MainScreens"
+        mc:Ignorable="d"
+        Title="Align a plate" Height="150" Width="335">
+    <Grid>
+        <Button x:Name="AcceptBtn" Content="OK" HorizontalAlignment="Left" Height="27" Margin="110,83,0,0" VerticalAlignment="Top" Width="94" IsDefault="True" Style="{DynamicResource MediumButton}" Click="AcceptBtn_Click"/>
+        <Button x:Name="CancelBtn" Content="Cancel" HorizontalAlignment="Left" Height="27" Margin="209,83,0,0" VerticalAlignment="Top" Width="82" IsCancel="True" Click="CancelBtn_Click"/>
+        <Label x:Name="lblProdLength" Content="Product Length" HorizontalAlignment="Left" Height="31" Margin="10,9,0,0" VerticalAlignment="Top" Width="95"/>
+        <Label x:Name="lblProdCode" Content="Product Code" HorizontalAlignment="Left" Height="40" Margin="10,42,0,0" VerticalAlignment="Top" Width="95"/>
+        <TextBox x:Name="tbProdLength" HorizontalAlignment="Left" Height="23" Margin="110,10,0,0" Text="TextBox" VerticalAlignment="Top" Width="181"/>
+        <TextBox x:Name="tbProdCode" HorizontalAlignment="Left" Height="24" Margin="110,43,0,0" Text="TextBox" VerticalAlignment="Top" Width="181"/>
+
+    </Grid>
+</Window>
