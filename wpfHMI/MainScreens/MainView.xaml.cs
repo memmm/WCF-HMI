@@ -62,8 +62,8 @@ namespace HmiStyle.MainScreens
         {
             try
             {
-                .setitemstate((ItemListView.SelectedItem as DeviceBase).DevID);
-                proxy.alertclients();
+                //.setitemstate((ItemListView.SelectedItem as DeviceBase).DevID);
+                //proxy.alertclients();
             }
             catch (NullReferenceException) { ChosenItemTextBox.Text = "Please choose a product"; }
         }
