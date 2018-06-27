@@ -18,8 +18,38 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    
-                    <TreeView Grid.Column="0"  Name="ResultTreeView" BorderThickness="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Name="clientsLbl" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                   
+                    <Grid Grid.Column="0" Grid.Row="1" >
+
+                        <ListView Name="ItemListView" ItemsSource="{Binding Devices, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" Width="Auto"  DisplayMemberBinding="{Binding DevName}"/>
+                                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding DevID}"/>
+                                    <GridViewColumn Header="Status" Width="50" DisplayMemberBinding="{Binding Opened}"/>
+                                </GridView>
+                            </ListView.View>
+
+                        </ListView>
+                    </Grid>
+
+                    <TextBox Name="ChosenItemTextBox"  Grid.Row="2" Margin="0,34,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.DevName, ElementName=ItemListView}" VerticalAlignment="Top"/>
+
+                    <DockPanel Grid.Row="3" Margin="10" >
+                        <Button Content="Change State" Width="210" Margin="20,0,20,0" Click="Button_Click_2"/>
+
+                    </DockPanel>
+
+
+                    <TreeView Grid.Column="2" Grid.RowSpan="3" Name="ResultTreeView" BorderThickness="0">
                         <TreeView.Resources>
                             <HierarchicalDataTemplate DataType="{x:Type main:ObjectNode}" ItemsSource="{Binding Path=Children}">
                                 <TreeViewItem>
@@ -35,17 +65,7 @@
                         </TreeView.Resources>
                     </TreeView>
 
-                    <ListBox Grid.Column="1"  x:Name="DeviceListBox" ItemsSource="{Binding Devices, UpdateSourceTrigger=PropertyChanged}"
-                            DisplayMemberPath="DevName" HorizontalAlignment="Left" Height="138" VerticalAlignment="Top" Width="156"
-                             SelectedItem="{Binding SelectedDevice}" SelectionChanged="DeviceListBox_SelectionChanged"/>
-
-
-                    <GroupBox Grid.Column="2" x:Name="DeviceDetailsGB" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-                        <Grid x:Name="DeviceDetailsGrid"></Grid>
-                    </GroupBox>
-
-
-
+                   
                 </Grid>
 
 

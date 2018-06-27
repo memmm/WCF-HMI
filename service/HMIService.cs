@@ -25,8 +25,8 @@ namespace service
 
             DeviceList.Add(FirstStackLight);
 
-            DeviceList.Add(new Valve("FirstOtherDevice", true));
-            DeviceList.Add(new Valve("SecondMotor", true));
+            DeviceList.Add(new Valve("FirstValve", true));
+            DeviceList.Add(new Valve("SecondValve", true));
             DeviceList.Add(new Valve("ThirdValve", false));            
         }
 
@@ -37,7 +37,10 @@ namespace service
             if (!clientList.Contains(proxyToClient))
             {
                 clientList.Add(proxyToClient);
-                 
+                foreach (var user in clientList)
+                {
+                    user.NewClientConnected(clientList.Count);
+                }
             }
 
         }

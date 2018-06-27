@@ -28,7 +28,8 @@ namespace contract
         [OperationContract(IsOneWay = true)]
         void DeviceDataChanged(DeviceBase devb);
 
-
+        [OperationContract(IsOneWay = true)]
+        void Connect();
 
         [OperationContract]
         void Subscribe();
@@ -38,12 +39,12 @@ namespace contract
     }
 
       
-    
-
-    [ServiceContract]
     public interface IHMIserviceCallback
     {
         [OperationContract]
         void DataChanged(DeviceBase device);
+
+        [OperationContract]
+        void NewClientConnected(int nrConnectedClients);
     }
 }

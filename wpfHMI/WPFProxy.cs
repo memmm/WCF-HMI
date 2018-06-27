@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace clientProxy
 {
-    public class WPFProxy : IHMIService
+    public class WPFProxy : IHMIService, IHMIserviceCallback
     {
 
         ChannelFactory<IHMIService> HMIServiceChannel = null;
@@ -21,9 +21,10 @@ namespace clientProxy
         {
             try
             {
+                var context = new InstanceContext(this);
                 var binding = new NetTcpBinding();
                 var endpoint = new EndpointAddress("net.tcp://localhost:8002/HmiService");
-                HMIServiceChannel = new DuplexChannelFactory<IHMIService>(fm, binding, endpoint);
+                HMIServiceChannel = new DuplexChannelFactory<IHMIService>(context, binding, endpoint);
                 service = HMIServiceChannel.CreateChannel();
             }
             catch (InvalidOperationException ie)
@@ -31,7 +32,12 @@ namespace clientProxy
                 Console.WriteLine(ie.Message);
             }
         }
-     
+
+        public void Connect()
+        {
+            service.Connect();
+
+        }
 
         public DeviceBase GetData(int devID)
         {
@@ -56,6 +62,16 @@ namespace clientProxy
         public void Unsubscribe()
         {
             service.Unsubscribe();
+        }
+
+        public void NewClientConnected(int no)
+        {
+            Console.WriteLine("There are " + no + " client(s) connected to the service");
+        }
+
+        public void DataChanged(DeviceBase d)
+        {
+
         }
 
     }

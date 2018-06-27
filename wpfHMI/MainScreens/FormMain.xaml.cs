@@ -27,8 +27,10 @@ namespace HmiStyle.MainScreens
     /// <summary>
     /// Interaction logic for FormMain.xaml
     /// </summary>
-    public partial class FormMain : Window, IHMIserviceCallback
+    public partial class FormMain : Window, INotifyPropertyChanged
     {
+        WPFProxy proxy;
+
         private ObservableCollection<DeviceBase> devices = new ObservableCollection<DeviceBase>();
         public ObservableCollection<DeviceBase> Devices
         {
@@ -65,11 +67,11 @@ namespace HmiStyle.MainScreens
         public FormMain()
         {
 
-            WPFProxy proxy = new WPFProxy(this);
+            proxy = new WPFProxy(this);
             Devices = proxy.GetDeviceList();
 
             InitializeComponent();
-
+            
             SplashScreenHelper.Hide();
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -78,7 +80,7 @@ namespace HmiStyle.MainScreens
             MenuItemMainView.IsChecked = true;
             popup.CustomPopupPlacementCallback = new CustomPopupPlacementCallback(placePopup);
             DataContext = this;
-            
+            proxy.Connect();
         }
 
         public CustomPopupPlacement[] placePopup(Size popupSize, Size targetSize, Point offset)
@@ -135,10 +137,7 @@ namespace HmiStyle.MainScreens
             p.Placement = PlacementMode.Center;
         }
 
-        public void DataChanged(DeviceBase d)
-        {
 
-        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
