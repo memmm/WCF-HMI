@@ -16,11 +16,16 @@ The prototype
 - Two types of client connect to the service: An ASP.NET Core website and a WPF application, multiple instances of both can connect to the service.
 - The data is shown on both platform and can be modified in a way the changes appear on all client and modify the setting file.
 
-
+Results
+The protoype contains a WPF client application (a modified version of an earlier project of redesigning the current HMI).
+The client includes a proxy class and handles the connection with manually added service reference. The service implements the IHMIcontract interface and hosted by a separate project, serviceHost, through TCP. There is also a second host project; an IIS host for ASP.NET clients.
+The service contains dummy device objects to pass on to the clients.
 
 
 Alternatives
-	Socket.io - enables real-time bidirectional event-based communication. Advantages: Shorter learning curve than WCF
+Socket.io - enables real-time bidirectional event-based communication. 
+Advantages: 
+Shorter learning curve than WCF
 Modern, widely used
 Disadvantages:
 Requires Node.js to implement service
